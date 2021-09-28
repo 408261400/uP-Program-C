@@ -1,0 +1,62 @@
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+unsigned int packCharacters(char newch)
+{
+    void displayBits(unsigned int value);
+    unsigned int num;
+    num=newch;
+    cout << num << " = ";
+    displayBits(num);
+    return num;
+}
+
+void displayBits(unsigned int value)
+{
+    unsigned temp;
+    vector <int> b;
+    for(int i=0;i<32;++i){
+        temp=value&1;
+        b.push_back(temp);
+        value=value>>1;
+    }
+    for(int i=b.size()-1;i>=0;--i){
+        cout << b.at(i);
+        if(i%8==0&&i!=0){
+            cout << " ";
+        }
+    }
+    cout << endl;
+}
+
+int main()
+{
+    char ch;
+    char c[4];
+    unsigned int number,start;
+    start=0;
+    for(int i=0;i<4;++i){
+        cin >> ch;
+        c[i]=ch;
+    }
+    for(int i=0;i<4;++i){
+        cout << c[i] << ":" << endl;
+        number=packCharacters(c[i]);
+        if(i==0){
+            number=number<<24;
+        }
+        else if(i==1){
+            number=number<<16;
+        }
+        else if(i==2){
+            number=number<<8;
+        }
+        start=start|number;
+    }
+    cout << "'" << c[0] << "' and '" << c[1] << "' and '" << c[2] << "' and '" << c[3] << "' packed in an unsigned int:" << endl;
+    cout << start << " = ";
+    displayBits(start);
+    return 0;
+}
