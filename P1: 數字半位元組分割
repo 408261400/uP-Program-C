@@ -1,0 +1,49 @@
+#include <iostream> 
+#include <bits/stdc++.h> 
+ 
+using namespace std; 
+ 
+int main() 
+{ 
+    unsigned int num,temp,start,tip; 
+    vector <int> v; 
+    tip=1; 
+    while(cin >> num){ 
+        temp = 15; 
+        cout << "Case " << tip << ": " << num << endl; 
+        for(int i=0;i<8;i++){ 
+            start = num & temp; 
+            v.push_back(start); 
+            num = num >> 4; 
+            start = 0; 
+        } 
+        for(int i=v.size()-1;i>=0;i--){ 
+            if(v.at(i)== 10){ 
+                cout << "A"; 
+            } 
+            else if(v.at(i) == 11){ 
+                cout << "B"; 
+            } 
+            else if(v.at(i)== 12){ 
+                cout << "C"; 
+            } 
+            else if(v.at(i) == 13){ 
+                cout << "D"; 
+            } 
+            else if(v.at(i)== 14){ 
+                cout << "E"; 
+            } 
+            else if(v.at(i) == 15){ 
+                cout << "F"; 
+            } 
+            else{ 
+                cout << v.at(i); 
+            } 
+            cout << " "; 
+        } 
+        cout << endl; 
+        tip++; 
+        v.clear(); 
+    } 
+    return 0; 
+}
