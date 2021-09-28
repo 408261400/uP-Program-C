@@ -1,0 +1,90 @@
+#include <iostream>  
+#include <bits/stdc++.h>  
+  
+using namespace std;  
+  
+void printBinary(unsigned int number)  
+{  
+    vector <int> bin;  
+    unsigned int start;  
+    for(int i=0;i<32;i++){  
+        start = number & 1;  
+        bin.push_back(start);  
+        number = number >> 1;  
+        start = 0;  
+    }  
+    for(int i=bin.size()-1;i>=0;i--){  
+        cout << bin.at(i);  
+    }  
+    cout << endl;  
+    bin.clear();  
+}  
+  
+void printOctal(unsigned int number)  
+{  
+    vector <int> oct;  
+    unsigned int start;  
+    for(int i=0;i<12;i++){  
+        start = number & 7;  
+        oct.push_back(start);  
+        number = number >> 3;  
+        start = 0;  
+    }  
+    for(int i=oct.size()-1;i>=0;i--){  
+        cout << oct.at(i);  
+    }  
+    cout << endl;  
+    oct.clear();  
+}  
+  
+void printHexidecimal(unsigned int number)  
+{  
+    vector <int> v;  
+    unsigned int start;  
+    for(int i=0;i<8;i++){  
+        start = number & 15;  
+        v.push_back(start);  
+        number = number >> 4;  
+        start = 0;  
+    }  
+    cout << "0x";  
+    for(int i=v.size()-1;i>=0;i--){  
+        if(v.at(i)== 10){  
+            cout << "A";  
+        }  
+        else if(v.at(i) == 11){  
+            cout << "B";  
+        }  
+        else if(v.at(i)== 12){  
+            cout << "C";  
+        }  
+        else if(v.at(i) == 13){  
+            cout << "D";  
+        }  
+        else if(v.at(i)== 14){  
+            cout << "E";  
+        }  
+        else if(v.at(i) == 15){  
+            cout << "F";  
+        }  
+        else{  
+            cout << v.at(i);  
+        }  
+    }  
+    cout << endl;  
+    v.clear();  
+}  
+  
+int main()  
+{  
+    unsigned int num,tip;  
+    tip=1;  
+    while(cin >> num){  
+        cout << "Case " << tip << ": " << num << endl;  
+        printBinary(num);  
+        printOctal(num);  
+        printHexidecimal(num);  
+        tip++;  
+    }  
+    return 0;  
+}
