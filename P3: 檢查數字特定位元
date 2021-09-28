@@ -1,0 +1,64 @@
+#include <iostream>  
+#include <bits/stdc++.h>  
+  
+using namespace std;  
+  
+int main()  
+{  
+    int num,temp,temp1,time;  
+    unsigned int number,start,start1;  
+    vector <int> v,nv;  
+    time=1;  
+    while(cin >> num){  
+        if(num==-1){  
+            break;  
+        }  
+        v.push_back(num);  
+    }  
+    sort(v.begin(),v.end());  
+    temp=v.at(0);  
+    for(int i=1;i<v.size();++i){  
+        if(temp==v.at(i)){  
+            v[i]=-1;  
+        }  
+        else{  
+            temp=v.at(i);  
+        }  
+    }  
+    for(int i=0;i<v.size();++i){  
+        if(v.at(i)!=-1){  
+            nv.push_back(v.at(i));  
+        }  
+    }  
+    for(int i=0;i<nv.size();++i){  
+        cout << nv.at(i) << " ";  
+    }  
+    cout << endl;  
+    temp1=0;  
+    while(cin >> number){  
+        cout << "Case " << time << ":" << " " << number << endl;  
+        for(int i=0;i<nv.size();++i){  
+            start=1<<nv[i];  
+            start1=number&start;  
+            if(start1==start){  
+                temp1++;  
+            }  
+        }  
+        if(temp1>0){  
+            if(temp1==nv.size()){  
+                cout << "true(all bits 1)" << endl;  
+            }  
+            else{  
+                cout << "false(all bits 1)" << endl;  
+            }  
+            cout << "true(exist bits 1)" << endl;  
+        }  
+        else{  
+            cout << "false(all bits 1)" << endl;  
+            cout << "false(exist bits 1)" << endl;  
+        }  
+        time++;  
+        temp1=0;  
+    }  
+    return 0;  
+}
