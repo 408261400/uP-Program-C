@@ -1,0 +1,56 @@
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    unsigned int num,temp,temp1,start;
+    int j,k;
+    vector <int> b;
+    unsigned int dec[4];
+    cin >> num;
+    cout << "The packed character representation is:" << endl;
+    cout << num << " = ";
+    for(int i=0;i<32;++i){
+        temp=num&1;
+        b.push_back(temp);
+        num=num>>1;
+    }
+    start=0;
+    j=7;
+    k=0;
+    for(int i=b.size()-1;i>=0;--i){
+        cout << b.at(i);
+        start=start+(b[i]<<j);
+        j--;
+        temp1=i&7;
+        if(temp1==0){
+            cout << " ";
+            dec[k]=start;
+            j=7;
+            start=0;
+            k++;
+        }
+    }
+    cout << endl;
+    cout << endl;
+    for(int i=0;i<4;++i){
+        cout << dec[i] << " = ";
+        b.clear();
+        for(int j=0;j<32;++j){
+            temp=dec[i]&1;
+            b.push_back(temp);
+            dec[i]=dec[i]>>1;
+        }
+        for(int j=b.size()-1;j>=0;--j){
+            temp1=j&7;
+            cout << b.at(j);
+            if(temp1==0){
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
+    return 0;
+}
