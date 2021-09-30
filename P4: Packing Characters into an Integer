@@ -15,7 +15,7 @@ unsigned int packCharacters(char newch)
 
 void displayBits(unsigned int value)
 {
-    unsigned temp;
+    unsigned int temp,temp1;
     vector <int> b;
     for(int i=0;i<32;++i){
         temp=value&1;
@@ -24,7 +24,8 @@ void displayBits(unsigned int value)
     }
     for(int i=b.size()-1;i>=0;--i){
         cout << b.at(i);
-        if(i%8==0&&i!=0){
+        temp1=i&7;
+        if(temp1==0&&i!=0){
             cout << " ";
         }
     }
